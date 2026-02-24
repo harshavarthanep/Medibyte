@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Medibyte Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: #1a2540;
+        }
+
+        /* HEADER (same as index/about) */
+        header {
+            background: linear-gradient(135deg, #0f1b2d 0%, #1a3a5c 100%);
+            padding: 0 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0 10px;
+        }
+
+        .brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 10px 0 14px;
+        }
+
+        .nav-row a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-row a:hover,
+        .nav-row a.active {
+            color: #4fc3f7;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #4fc3f7, #0288d1);
+            color: #fff;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 25px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.35);
+            transition: transform 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* HERO BANNER */
+        .careers-hero {
+            background: linear-gradient(135deg, #0f1b2d 0%, #1a3a5c 60%, #0d3058 100%);
+            padding: 90px 60px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .careers-hero h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .careers-hero p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        /* MAIN CAREERS CONTENT */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px 100px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #132c4a;
+            margin-bottom: 50px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #7dd3fc;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+        }
+
+        .icon-wrap {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffc7c7 0%, #ffe2e2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .icon-wrap svg {
+            width: 32px;
+            height: 32px;
+            stroke: #132c4a;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #132c4a;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #4f5963;
+            line-height: 1.6;
+        }
+
+        .upload-btn:hover {
+            background: #01579b;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f1b2d;
+            text-align: center;
+            padding: 28px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        footer span {
+            color: #4fc3f7;
+        }
+
+        @media (max-width: 900px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 0 20px;
+            }
+
+            main {
+                padding: 50px 20px 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="top-row">
+            <a href="index.html" class="brand">Medibyte Technologies</a>
+            <a href="tel:+919994714178" class="contact-btn">Contact Us</a>
+        </div>
+        <nav class="nav-row">
+            <a href="services.html" id="navCoreServices" class="active">OUR CORE SERVICES</a>
+            <a href="about.html">About Us</a>
+            <a href="careers.html">Careers</a>
+        </nav>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="careers-hero">
+        <h1>Our Core Services</h1>
+        <p>Expertise in Healthcare Coding & Compliance</p>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <h2 class="section-title">What We Do</h2>
+
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="icon-wrap">
+                    <h2 style="color: #132c4a; font-size: 2rem; font-weight: 800; margin: 0;">1️⃣</h2>
+                </div>
+                <h3>HCC Risk Adjustment Coding</h3>
+                <p>Comprehensive review of medical records to identify and code chronic conditions as per CMS
+                    guidelines.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="icon-wrap">
+                    <h2 style="color: #132c4a; font-size: 2rem; font-weight: 800; margin: 0;">2️⃣</h2>
+                </div>
+                <h3>Chart Review & Recapture</h3>
+                <p>Annual recapture of chronic conditions to prevent revenue leakage.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="icon-wrap">
+                    <h2 style="color: #132c4a; font-size: 2rem; font-weight: 800; margin: 0;">3️⃣</h2>
+                </div>
+                <h3>ICD-10-CM Coding</h3>
+                <p>Accurate diagnosis code mapping aligned with CMS-HCC models.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="icon-wrap">
+                    <h2 style="color: #132c4a; font-size: 2rem; font-weight: 800; margin: 0;">4️⃣</h2>
+                </div>
+                <h3>Documentation Improvement Support</h3>
+                <p>Ensuring MEAT criteria compliance for every condition coded.</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="icon-wrap">
+                    <h2 style="color: #132c4a; font-size: 2rem; font-weight: 800; margin: 0;">5️⃣</h2>
+                </div>
+                <h3>HCC Audit & Quality Analysis</h3>
+                <p>Internal coding audits to maintain 98%+ accuracy and compliance readiness.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 <span>Medibyte Technologies</span>. All rights reserved. Strictly HIPAA Compliant.
+    </footer>
+</body>
+
+</html>

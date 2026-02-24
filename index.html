@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medibyte Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f1b2d 0%, #1a3a5c 50%, #0f2744 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* ─── TOP NAVBAR ─── */
+        header {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 40px;
+        }
+
+        /* Row 1: Brand + Search + Contact */
+        .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0 10px;
+        }
+
+        .brand {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Contact Us button */
+        .contact-btn {
+            background: linear-gradient(135deg, #4fc3f7, #0288d1);
+            color: #fff;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.35);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 195, 247, 0.5);
+        }
+
+        /* ─── CONTACT MODAL ─── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: linear-gradient(135deg, #0f2744, #1a3a5c);
+            border: 1px solid rgba(79, 195, 247, 0.3);
+            border-radius: 20px;
+            padding: 48px 52px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(79, 195, 247, 0.1);
+            animation: popIn 0.25s ease;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.85);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .modal-box h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .modal-box p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.9rem;
+            margin-bottom: 28px;
+        }
+
+        .phone-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 32px;
+            letter-spacing: 1px;
+        }
+
+        .call-now-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #4fc3f7, #0288d1);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            box-shadow: 0 6px 25px rgba(79, 195, 247, 0.45);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 14px;
+        }
+
+        .call-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(79, 195, 247, 0.6);
+        }
+
+        .close-modal-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+            width: 100%;
+            padding: 11px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .close-modal-btn:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            color: #fff;
+        }
+
+        /* ─── ABOUT US MODAL ─── */
+        .aboutus-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .aboutus-overlay.active {
+            display: flex;
+        }
+
+        .aboutus-box {
+            background: linear-gradient(145deg, #0a1e36, #112d4e);
+            border: 1px solid rgba(79, 195, 247, 0.25);
+            border-radius: 22px;
+            padding: 48px 52px;
+            max-width: 760px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 50px rgba(79, 195, 247, 0.08);
+            animation: popIn 0.25s ease;
+            position: relative;
+        }
+
+        .aboutus-box::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .aboutus-box::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .aboutus-box::-webkit-scrollbar-thumb {
+            background: rgba(79, 195, 247, 0.3);
+            border-radius: 10px;
+        }
+
+        .aboutus-close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .aboutus-close:hover {
+            background: rgba(79, 195, 247, 0.2);
+            color: #fff;
+        }
+
+        .aboutus-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .aboutus-icon {
+            font-size: 2.8rem;
+            background: rgba(79, 195, 247, 0.12);
+            border: 1px solid rgba(79, 195, 247, 0.3);
+            border-radius: 14px;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .aboutus-header h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .aboutus-header p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            margin-top: 2px;
+        }
+
+        .aboutus-intro {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.97rem;
+            line-height: 1.75;
+            margin-bottom: 32px;
+            border-left: 3px solid #4fc3f7;
+            padding-left: 16px;
+        }
+
+        .aboutus-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #4fc3f7;
+            margin-bottom: 14px;
+            margin-top: 28px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .service-card {
+            background: rgba(79, 195, 247, 0.07);
+            border: 1px solid rgba(79, 195, 247, 0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .service-card .s-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.88rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            flex: 1;
+            min-width: 140px;
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.15), rgba(79, 195, 247, 0.05));
+            border: 1px solid rgba(79, 195, 247, 0.25);
+            border-radius: 14px;
+            padding: 18px 20px;
+            text-align: center;
+        }
+
+        .stat-badge .s-num {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4fc3f7, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-badge .s-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 4px;
+        }
+
+        .hipaa-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 14px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .hipaa-banner .h-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .hipaa-banner p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .hipaa-banner strong {
+            color: #34d399;
+        }
+
+        /* Row 2: Nav links below brand */
+        .nav-row {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            padding: 10px 0 16px;
+        }
+
+        .nav-row a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.2s;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-row a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4fc3f7;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .nav-row a:hover {
+            color: #ffffff;
+        }
+
+        .nav-row a:hover::after {
+            width: 100%;
+        }
+
+        /* ─── ABOUT DROPDOWN ─── */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown>.dropdown-trigger {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.2s;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .nav-dropdown>.dropdown-trigger::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4fc3f7;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .nav-dropdown:hover>.dropdown-trigger,
+        .nav-dropdown.open>.dropdown-trigger {
+            color: #fff;
+        }
+
+        .nav-dropdown:hover>.dropdown-trigger::after,
+        .nav-dropdown.open>.dropdown-trigger::after {
+            width: calc(100% - 14px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.6rem;
+            transition: transform 0.25s;
+            opacity: 0.7;
+        }
+
+        .nav-dropdown.open .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 14px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 39, 68, 0.97);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            border-radius: 12px;
+            min-width: 170px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            z-index: 999;
+            animation: fadeSlide 0.2s ease;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .nav-dropdown.open .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.18s, color 0.18s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(79, 195, 247, 0.12);
+            color: #4fc3f7;
+        }
+
+        .dropdown-menu a .menu-icon {
+            font-size: 1rem;
+        }
+
+        /* ─── HERO SECTION ─── */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(79, 195, 247, 0.15);
+            border: 1px solid rgba(79, 195, 247, 0.4);
+            color: #4fc3f7;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            max-width: 750px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.65);
+            max-width: 580px;
+            line-height: 1.7;
+            margin-bottom: 44px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4fc3f7, #0288d1);
+            color: #fff;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 25px rgba(79, 195, 247, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 195, 247, 0.55);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            padding: 14px 34px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: #4fc3f7;
+            background: rgba(79, 195, 247, 0.08);
+        }
+
+        /* ─── STATS ─── */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            padding: 50px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .num {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4fc3f7, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item .label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ─── CODING HIGHLIGHT ─── */
+        .coding-highlight {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 40px 80px;
+            text-align: center;
+        }
+
+        .coding-highlight h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .coding-highlight p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        /* ─── IMAGE GALLERY ─── */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            margin: 0 auto;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(79, 195, 247, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <!-- Row 1: Brand | Search + Contact Us -->
+        <div class="top-row">
+            <div class="brand">Medibyte Technologies</div>
+
+            <!-- Contact Us (top right) -->
+            <button class="contact-btn" id="contactBtn"
+                onclick="document.getElementById('contactModal').classList.add('active')">Contact Us</button>
+        </div>
+
+        <!-- Row 2: Nav links below Medibyte Technologies -->
+        <nav class="nav-row">
+            <a href="services.html" id="navCoreServices">OUR CORE SERVICES</a>
+
+            <!-- About Dropdown -->
+            <div class="nav-dropdown" id="aboutDropdown">
+                <button class="dropdown-trigger" onclick="toggleAbout(event)">
+                    About <span class="dropdown-arrow">&#9660;</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="about.html" id="navAboutUs">
+                        <span class="menu-icon">🏢</span> About Us
+                    </a>
+                    <a href="careers.html" id="navCareers">
+                        <span class="menu-icon">💼</span> Careers
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <span class="hero-tag">Transforming Healthcare</span>
+            <h1>Innovative <span>Medical Technology</span> for a Better Tomorrow</h1>
+            <p>
+                Medibyte Technologies delivers cutting-edge digital health solutions that
+                empower clinicians, streamline operations, and improve patient outcomes worldwide.
+            </p>
+        </section>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="num">500+</div>
+                <div class="label">Healthcare Partners</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">98%</div>
+                <div class="label">Patient Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">40+</div>
+                <div class="label">Countries Served</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">12M+</div>
+                <div class="label">Records Managed</div>
+            </div>
+        </div>
+
+        <!-- Medical Coding Highlight Section -->
+        <section class="coding-highlight">
+            <h2>Expert Medical Coding Solutions</h2>
+            <p>
+                Our certified coders specialise in ICD-10-CM, CMS HCC guidelines, and comprehensive medical record
+                reviews. We guarantee high-accuracy risk adjustment factor (RAF) scoring to ensure your documentation is
+                fully HIPAA compliant and continuously audit-ready.
+            </p>
+            <div class="image-gallery">
+                <img src="image5.png" alt="Understanding HCC Coding" class="gallery-img">
+            </div>
+        </section>
+    </main>
+
+    <!-- About Us Modal -->
+    <div class="aboutus-overlay" id="aboutUsModal" onclick="if(event.target===this) this.classList.remove('active')">
+        <div class="aboutus-box">
+            <button class="aboutus-close"
+                onclick="document.getElementById('aboutUsModal').classList.remove('active')">&#10005;</button>
+
+            <div class="aboutus-header">
+                <div class="aboutus-icon">🏥</div>
+                <div>
+                    <h2>About Medibyte Technologies</h2>
+                    <p>Healthcare Coding &amp; Risk Adjustment Experts</p>
+                </div>
+            </div>
+
+            <p class="aboutus-intro">
+                We have certified coders experienced in ICD-10-CM, risk adjustment, and quality audits.
+                We are interested in exploring subcontracting opportunities to support your projects or vendor needs.
+            </p>
+
+            <div class="aboutus-section-title">Our Core Services</div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="s-icon">📋</span>
+                    <p>ICD-10-CM Coding</p>
+                </div>
+                <div class="service-card">
+                    <span class="s-icon">⚕️</span>
+                    <p>CMS HCC Guidelines</p>
+                </div>
+                <div class="service-card">
+                    <span class="s-icon">📊</span>
+                    <p>Risk Adjustment Factor (RAF) Scoring</p>
+                </div>
+                <div class="service-card">
+                    <span class="s-icon">🔍</span>
+                    <p>Medical Record Review &amp; Gap Analysis</p>
+                </div>
+                <div class="service-card">
+                    <span class="s-icon">✅</span>
+                    <p>Quality Compliance &amp; Audit Preparedness</p>
+                </div>
+                <div class="service-card">
+                    <span class="s-icon">🛡️</span>
+                    <p>Project Accuracy &amp; Quality Assurance</p>
+                </div>
+            </div>
+
+            <div class="aboutus-section-title">Our Performance</div>
+            <div class="stats-row">
+                <div class="stat-badge">
+                    <div class="s-num">98%</div>
+                    <div class="s-label">Project Accuracy</div>
+                </div>
+                <div class="stat-badge">
+                    <div class="s-num">100%</div>
+                    <div class="s-label">Audit Preparedness</div>
+                </div>
+                <div class="stat-badge">
+                    <div class="s-num">HCC</div>
+                    <div class="s-label">RAF Certified</div>
+                </div>
+            </div>
+
+            <div class="aboutus-section-title">Compliance</div>
+            <div class="hipaa-banner">
+                <span class="h-icon">🔒</span>
+                <p><strong>HIPAA Compliant</strong> — We strictly follow all HIPAA rules and regulations to ensure the
+                    highest standards of data privacy, security, and patient information protection.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal" onclick="if(event.target===this) this.classList.remove('active')">
+        <div class="modal-box">
+            <div class="modal-icon">📞</div>
+            <h2>Call Us Anytime</h2>
+            <p>We're available 24/7 to assist you</p>
+            <div class="phone-number">xxxxxxxxxx</div>
+            <a href="tel:xxxxxxxxxx" class="call-now-btn">📲 Call Us: xxxxxxxxxx</a>
+            <button class="close-modal-btn"
+                onclick="document.getElementById('contactModal').classList.remove('active')">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleAbout(e) {
+            e.stopPropagation();
+            document.getElementById('aboutDropdown').classList.toggle('open');
+        }
+
+        function openAboutUs(e) {
+            e.preventDefault();
+            document.getElementById('aboutDropdown').classList.remove('open');
+            document.getElementById('aboutUsModal').classList.add('active');
+        }
+
+        // Close dropdown when clicking anywhere outside
+        document.addEventListener('click', function () {
+            document.getElementById('aboutDropdown').classList.remove('open');
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Medibyte Technologies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fb;
+            color: #1a2540;
+        }
+
+        /* ─── HEADER (same as index) ─── */
+        header {
+            background: linear-gradient(135deg, #0f1b2d 0%, #1a3a5c 100%);
+            padding: 0 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0 10px;
+        }
+
+        .brand {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 10px 0 14px;
+        }
+
+        .nav-row a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-row a:hover,
+        .nav-row a.active {
+            color: #4fc3f7;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #4fc3f7, #0288d1);
+            color: #fff;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 25px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.35);
+            transition: transform 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ─── HERO BANNER ─── */
+        .about-hero {
+            background: linear-gradient(135deg, #0f1b2d 0%, #1a3a5c 60%, #0d3058 100%);
+            padding: 90px 60px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(79, 195, 247, 0.08) 0%, transparent 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(79, 195, 247, 0.15);
+            border: 1px solid rgba(79, 195, 247, 0.4);
+            color: #4fc3f7;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 20px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+
+        .about-hero h1 span {
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-hero p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        /* ─── MAIN CONTENT ─── */
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 70px 30px 100px;
+        }
+
+        /* Section label */
+        .section-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #0288d1;
+            background: rgba(2, 136, 209, 0.08);
+            border: 1px solid rgba(2, 136, 209, 0.2);
+            padding: 5px 16px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #0f1b2d;
+            margin-bottom: 14px;
+            line-height: 1.25;
+        }
+
+        .section-desc {
+            color: #566b8a;
+            font-size: 1rem;
+            line-height: 1.75;
+            max-width: 680px;
+        }
+
+        /* ─── WHO WE ARE ─── */
+        .who-we-are {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .who-image-block {
+            background: linear-gradient(135deg, #0f2744, #1a3a5c);
+            border-radius: 20px;
+            padding: 48px 40px;
+            text-align: center;
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            box-shadow: 0 12px 40px rgba(15, 27, 45, 0.15);
+        }
+
+        .big-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .who-image-block h3 {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .who-image-block p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .highlight-text {
+            color: #4fc3f7;
+            font-weight: 700;
+        }
+
+        /* ─── SERVICES ─── */
+        .services-section {
+            margin-bottom: 80px;
+        }
+
+        .services-header {
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 28px;
+            border: 1px solid #e2eaf5;
+            box-shadow: 0 4px 20px rgba(15, 27, 45, 0.06);
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(15, 27, 45, 0.12);
+            border-color: #4fc3f7;
+        }
+
+        .card-icon-wrap {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #e3f4fd, #c8ecfb);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+
+        .service-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0f1b2d;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: 0.88rem;
+            color: #6b82a0;
+            line-height: 1.65;
+        }
+
+        /* ─── STATS STRIP ─── */
+        .stats-strip {
+            background: linear-gradient(135deg, #0f1b2d, #1a3a5c);
+            border-radius: 20px;
+            padding: 50px 60px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+            margin-bottom: 80px;
+            box-shadow: 0 12px 40px rgba(15, 27, 45, 0.2);
+        }
+
+        .stat-item {
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0 20px;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-num {
+            font-size: 2.4rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #4fc3f7, #81d4fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* ─── WHY CHOOSE US ─── */
+        .why-section {
+            margin-bottom: 80px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 36px;
+        }
+
+        .why-card {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: #fff;
+            border: 1px solid #e2eaf5;
+            border-radius: 14px;
+            padding: 24px 22px;
+            box-shadow: 0 2px 12px rgba(15, 27, 45, 0.05);
+            transition: border-color 0.2s;
+        }
+
+        .why-card:hover {
+            border-color: #4fc3f7;
+        }
+
+        .why-icon {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #0288d1, #4fc3f7);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .why-card h4 {
+            font-size: 0.97rem;
+            font-weight: 700;
+            color: #0f1b2d;
+            margin-bottom: 6px;
+        }
+
+        .why-card p {
+            font-size: 0.85rem;
+            color: #6b82a0;
+            line-height: 1.6;
+        }
+
+        /* ─── HIPAA SECTION ─── */
+        .hipaa-section {
+            background: linear-gradient(135deg, #f0faf5, #e8f8f0);
+            border: 1px solid #b2dfdb;
+            border-radius: 20px;
+            padding: 52px 60px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .hipaa-icon-wrap {
+            width: 90px;
+            height: 90px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #00897b, #26a69a);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            box-shadow: 0 8px 25px rgba(0, 137, 123, 0.3);
+        }
+
+        .hipaa-content h2 {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #00695c;
+            margin-bottom: 12px;
+        }
+
+        .hipaa-content p {
+            color: #37474f;
+            font-size: 0.97rem;
+            line-height: 1.75;
+            max-width: 640px;
+        }
+
+        .hipaa-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .hipaa-badge {
+            background: rgba(0, 137, 123, 0.1);
+            border: 1px solid rgba(0, 137, 123, 0.3);
+            color: #00695c;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        /* ─── CTA BANNER ─── */
+        .cta-banner {
+            background: linear-gradient(135deg, #0288d1, #01579b);
+            border-radius: 20px;
+            padding: 52px 60px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 12px 40px rgba(2, 136, 209, 0.35);
+        }
+
+        .cta-banner h2 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .cta-banner p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #fff;
+            color: #0288d1;
+            font-weight: 700;
+            font-size: 0.97rem;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #0f1b2d;
+            text-align: center;
+            padding: 28px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        footer span {
+            color: #4fc3f7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+
+            .about-hero {
+                padding: 60px 20px;
+            }
+
+            main {
+                padding: 40px 20px 60px;
+            }
+
+            .who-we-are {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-strip {
+                grid-template-columns: 1fr 1fr;
+                padding: 30px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hipaa-section {
+                flex-direction: column;
+                padding: 32px 24px;
+            }
+
+            .cta-banner {
+                padding: 36px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="top-row">
+            <a href="index.html" class="brand">Medibyte Technologies</a>
+            <a href="tel:+919994714178" class="contact-btn">Contact Us</a>
+        </div>
+        <nav class="nav-row">
+            <a href="services.html" id="navCoreServices">OUR CORE SERVICES</a>
+            <a href="about.html" class="active">About Us</a>
+            <a href="careers.html">Careers</a>
+        </nav>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="about-hero">
+        <div class="hero-badge">About Medibyte Technologies</div>
+        <h1>Trusted Experts in <span>Medical Coding</span> & Risk Adjustment</h1>
+        <p>
+            Certified coders with deep expertise in ICD-10-CM, CMS HCC guidelines, and
+            risk adjustment — committed to accuracy, compliance, and your project success.
+        </p>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- WHO WE ARE -->
+        <section class="who-we-are">
+            <div>
+                <span class="section-tag">Who We Are</span>
+                <h2 class="section-title">Certified Medical Coding Professionals</h2>
+                <p class="section-desc">
+                    We have <strong>certified coders</strong> experienced in ICD-10-CM, risk adjustment,
+                    and quality audits. We are interested in exploring
+                    <span class="highlight-text">subcontracting opportunities</span> to support
+                    your projects or vendor needs.
+                </p>
+                <p class="section-desc" style="margin-top:18px;">
+                    Our team brings deep knowledge of CMS HCC guidelines, RAF scoring, and medical record
+                    review — ensuring every project meets the highest standards of accuracy and compliance.
+                </p>
+            </div>
+            <div class="who-image-block">
+                <div class="big-icon">🏥</div>
+                <h3>Medibyte Technologies</h3>
+                <p>
+                    Healthcare Coding &amp; Risk Adjustment Experts — delivering precision,
+                    quality, and <span class="highlight-text">98% project accuracy</span> on every engagement.
+                </p>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="services-section">
+            <div class="services-header">
+                <span class="section-tag">Our Core Services</span>
+                <h2 class="section-title">What We Specialise In</h2>
+                <p class="section-desc">
+                    Comprehensive healthcare coding solutions designed to maximise risk adjustment
+                    accuracy, close documentation gaps, and ensure full compliance.
+                </p>
+            </div>
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="card-icon-wrap">📋</div>
+                    <h4>ICD-10-CM Coding</h4>
+                    <p>Accurate and complete ICD-10-CM code assignment for outpatient, inpatient, and risk adjustment
+                        medical records.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon-wrap">⚕️</div>
+                    <h4>CMS HCC Guidelines</h4>
+                    <p>Expert application of CMS Hierarchical Condition Category (HCC) guidelines for Medicare Advantage
+                        programs.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon-wrap">📊</div>
+                    <h4>Risk Adjustment Factor (RAF) Scoring</h4>
+                    <p>Precise RAF scoring to ensure appropriate reimbursement and compliance with CMS risk adjustment
+                        models.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon-wrap">🔍</div>
+                    <h4>Medical Record Review & Gap Analysis</h4>
+                    <p>Thorough chart review and HCC gap identification to close documentation gaps and maximise capture
+                        rates.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon-wrap">✅</div>
+                    <h4>Quality Compliance & Audit Preparedness</h4>
+                    <p>Ongoing quality monitoring, internal audits, and documentation support to keep your program
+                        audit-ready.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-icon-wrap">🤝</div>
+                    <h4>Subcontracting & Vendor Support</h4>
+                    <p>Flexible subcontracting partnerships to supplement your existing team capacity during peak
+                        project demands.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STATS STRIP -->
+        <div class="stats-strip">
+            <div class="stat-item">
+                <div class="stat-num">98%</div>
+                <div class="stat-label">Project Accuracy</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Audit Preparedness</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">HCC</div>
+                <div class="stat-label">RAF Certified Coders</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">HIPAA</div>
+                <div class="stat-label">Fully Compliant</div>
+            </div>
+        </div>
+
+        <!-- WHY CHOOSE US -->
+        <section class="why-section">
+            <span class="section-tag">Why Choose Us</span>
+            <h2 class="section-title">Built on Precision & Trust</h2>
+            <div class="why-grid">
+
+                <div class="why-card">
+                    <div class="why-icon">🎯</div>
+                    <div>
+                        <h4>98% Coding Accuracy</h4>
+                        <p>Our certified coders consistently deliver industry-leading accuracy rates across all coding
+                            categories and project types.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">🔒</div>
+                    <div>
+                        <h4>Strict HIPAA Compliance</h4>
+                        <p>We strictly follow all HIPAA rules — ensuring patient data privacy, security, and regulatory
+                            compliance at all times.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">📑</div>
+                    <div>
+                        <h4>ICD-10-CM Expert Coders</h4>
+                        <p>Deep expertise in ICD-10-CM, CMS HCC, and RAF scoring with hands-on experience across diverse
+                            payer environments.</p>
+                    </div>
+                </div>
+
+                <div class="why-card">
+                    <div class="why-icon">⚡</div>
+                    <div>
+                        <h4>Flexible Subcontracting</h4>
+                        <p>We seamlessly integrate with your existing workflows to provide capacity support without
+                            disrupting your operations.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HIPAA COMPLIANCE -->
+        <section class="hipaa-section">
+            <div class="hipaa-icon-wrap">🔒</div>
+            <div class="hipaa-content">
+                <h2>HIPAA Compliant — Always</h2>
+                <p>
+                    At Medibyte Technologies, data security and patient privacy are non-negotiable.
+                    We <strong>strictly follow all HIPAA rules and regulations</strong> — from data
+                    handling and storage to transmission protocols — ensuring your projects are always
+                    protected, secure, and fully compliant.
+                </p>
+                <div class="hipaa-badges">
+                    <span class="hipaa-badge">✔ HIPAA Compliant</span>
+                    <span class="hipaa-badge">✔ PHI Protected</span>
+                    <span class="hipaa-badge">✔ Secure Data Handling</span>
+                    <span class="hipaa-badge">✔ Audit Ready</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <div class="cta-banner">
+            <h2>Ready to Partner With Us?</h2>
+            <p>
+                Let's discuss how Medibyte Technologies can support your risk adjustment
+                and medical coding projects with precision and reliability.
+            </p>
+            <a href="tel:xxxxxxxxxx" class="cta-btn">📲 Call Us: xxxxxxxxxx</a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 <span>Medibyte Technologies</span>. All rights reserved. Strictly HIPAA Compliant.
+    </footer>
+
+</body>
+
+</html>
